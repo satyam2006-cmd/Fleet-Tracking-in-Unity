@@ -9,6 +9,14 @@ public class RoadPathBuilder : MonoBehaviour
 
     void Awake()
     {
+        // These spline objects are only editor guides. VehicleMovement uses the
+        // RoadPath data built below, so hide the guides while the game is running.
+        foreach (Transform sceneTransform in FindObjectsByType<Transform>(FindObjectsSortMode.None))
+        {
+            if (sceneTransform.name.StartsWith("RoadSpline"))
+                sceneTransform.gameObject.SetActive(false);
+        }
+
         VehicleMovement vm = FindFirstObjectByType<VehicleMovement>();
         if (vm == null)
         {
