@@ -1,6 +1,14 @@
 # Fleet Tracking in Unity
 
-A Unity 3D fleet-tracking demo backed by a small FastAPI service. The Unity scene displays three vehicles, moves them along authored city routes using GPS samples, and includes a dashboard, route analytics, traffic signals, and vehicle markers.
+> A Unity 6 fleet-tracking simulator with GPS-driven routes, live dashboard analytics, traffic signals, and a FastAPI backend.
+
+![Fleet Tracking in Unity: city overview with fleet dashboard and route analytics](webpreview.png)
+
+## About
+
+This project connects a local GPS data API to a 3D Unity city. Three sample vehicles follow routes through the scene while the dashboard shows their positions, distance, movement status, and route progress. Traffic signals regulate movement at junctions, and the camera can follow a selected vehicle or return to a fleet overview.
+
+The vehicle data is sample data stored in `data/vehicles.csv`; the project does not connect to live GPS devices or a cloud service.
 
 ## Requirements
 
@@ -15,6 +23,7 @@ Assets/Scenes/FleetTrackingScene.unity  Main fleet demo scene
 Assets/Scripts/                         Unity movement, API, dashboard, and traffic scripts
 backend/main.py                         FastAPI service
 data/vehicles.csv                       Sample GPS points for V1, V2, and V3
+webpreview.png                          Screenshot of the fleet overview
 requirements.txt                        Python service dependencies
 ```
 
@@ -52,6 +61,8 @@ Useful API URLs:
 2. Open `Assets/Scenes/FleetTrackingScene.unity`.
 3. Start the API as described above.
 4. Press **Play**. The scene requests route samples from `http://127.0.0.1:8000/routes`.
+
+In Play mode, click a vehicle card or press **1**, **2**, or **3** to follow a vehicle. Click the Fleet Dashboard or press **0** to return to the overview.
 
 The included CSV is example data for three vehicles. The Unity app uses each vehicle's sample sequence to advance it along its configured scene route; the GPS coordinates are also available to the dashboard and API clients.
 
